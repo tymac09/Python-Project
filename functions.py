@@ -17,8 +17,8 @@ def get_todos(file_path=FILEPATH):
         list: A list of strings, where each string is a line from the file.
     """
     with open(file_path, 'r') as file_local:
-        # Read all lines from the file and store them in a list.
-        todos_list_local = file_local.readlines()
+        # Strip newline characters while reading
+        todos_list_local = [line.strip() for line in file_local.readlines()]
     return todos_list_local
 
 
