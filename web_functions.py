@@ -88,7 +88,20 @@ def complete_todo(index):
     """
     todos = functions.get_todos()
     try:
+        removed_todo = todos[index]  # Store the item before removing it
         todos.pop(index)  # Remove the item at the given index
-        _update_todos(todos)
+        _update_todos(todos)  # Save the updated list
+        
+        # Styled display for completed to-do
+        st.markdown(
+            f"""
+            <div style="background-color: #d4edda; color: #155724; 
+                        padding: 10px; border-radius: 5px; 
+                        font-size: 16px; margin-top: 10px;">
+                ✅ <strong>Completed to-do:</strong> {removed_todo.strip()}
+            </div>
+            """, 
+            unsafe_allow_html=True
+        )
     except IndexError:
-        raise ValueError(f"Invalid index {index}. Unable to complete to-do.")
+        st.error(f"Invalid index {index}. Unable to complete to-do.")

@@ -52,4 +52,13 @@ elif action == "Edit":
 elif action == "Show":
     st.write("### Current To-Do List")
     for index, todo in enumerate(st.session_state.todos):
-        st.write(f"- {todo.strip()}")
+        col1, col2 = st.columns([0.85, 0.15])  # Create two columns
+        with col1:
+            st.write(todo.strip())  # Display the to-do item
+        with col2:
+            # Add a "Complete" button for each to-do
+            if st.button("Complete", key=f"complete_{index}"):
+                web_functions.complete_todo(index)  # Call the complete_todo function
+                st.session_state.todos = functions.get_todos()  # Reload updated list
+                st.query_params["refresh"] = "true"  # Refresh the page
+
