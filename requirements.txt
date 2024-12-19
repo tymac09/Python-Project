@@ -1,0 +1,2 @@
+streamlit>=1.20.0       # For web-based interface
+PySimpleGUI>=4.60.0     # For desktop GUI
