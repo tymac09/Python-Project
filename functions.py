@@ -33,10 +33,21 @@ def write_todos(todos_local, file_path=FILEPATH):
     Returns:
         None: This function does not return anything. It simply updates the specified file.
     """
+def write_todos(todos_local, file_path=FILEPATH):
+    """
+    Writes a list of todos to a specified text file.
+
+    Parameters:
+        todos_local (list): A list of todo items to write into the file.
+        file_path (str): The path to the file where the todos will be written. Defaults to "todos.txt".
+
+    Returns:
+        None
+    """
     with open(file_path, 'w') as file:
-        # Write each todo item from the list into the file.
-        file.writelines(todos_local)
-        
+        # Ensure each todo item ends with a newline character
+        file.writelines([todo.strip() + '\n' for todo in todos_local])
+    
 if __name__ == "__main__":
     print("Hello")
     print(get_todos())
